@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>ALL-INKL Zugänge</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+<!-- ============ Gesperrt ============ -->
+<section id="view-locked" class="view" hidden>
+  <div class="locked-box">
+    <div class="locked-icon" aria-hidden="true">&#128274;</div>
+    <h1>Gesperrt</h1>
+    <p class="muted">Master-Passwort eingeben, um die Zugänge zu entschlüsseln.</p>
+    <form id="unlock-form" autocomplete="off">
+      <input type="password" id="unlock-password" placeholder="Master-Passwort" autocomplete="current-password" required>
+      <button type="submit" class="btn btn-primary btn-block">Entsperren</button>
+    </form>
+    <p id="unlock-error" class="error" hidden></p>
+  </div>
+</section>
+
+<!-- ============ Liste ============ -->
+<section id="view-list" class="view" hidden>
+  <header class="topbar">
+    <div class="brand">
+      <img class="brand-mark" src="icons/icon32.png" alt="" aria-hidden="true">
+      <span class="brand-text">ALL&#8209;INKL Zugänge</span>
+    </div>
+    <div class="topbar-actions">
+      <button id="btn-new" class="icon-btn" title="Neuer Account (N)" aria-label="Neuer Account">+</button>
+      <button id="btn-lock" class="icon-btn" title="Sperren" aria-label="Sperren" hidden>&#128274;</button>
+      <button id="btn-settings" class="icon-btn" title="Einstellungen" aria-label="Einstellungen">&#9881;</button>
+    </div>
+  </header>
+
+  <div class="searchbar">
+    <input type="search" id="search" placeholder="Suchen: Beschreibung, Benutzer, Notiz …" autocomplete="off" spellcheck="false">
+  </div>
+
+  <nav class="filters" id="service-filter">
+    <button class="chip chip-active" data-service="all">Alle</button>
+    <button class="chip" data-service="members">MembersArea</button>
+    <button class="chip" data-service="kas">KAS</button>
+    <button class="chip" data-service="webmail">WebMail</button>
+    <button class="chip" data-service="webftp">WebFTP</button>
+  </nav>
+
+  <div id="list" class="list"></div>
+
+  <div id="empty" class="empty" hidden>
+    <p class="empty-title">Noch keine Accounts</p>
+    <p class="muted">Mit „+“ den ersten ALL&#8209;INKL Account anlegen.</p>
+  </div>
+</section>
+
+<!-- ============ Bearbeiten ============ -->
+<section id="view-edit" class="view" hidden>
+  <header class="topbar">
+    <button id="edit-back" class="icon-btn" aria-label="Zurück">&#8592;</button>
+    <div class="brand"><span class="brand-text" id="edit-title">Account</span></div>
+    <div class="topbar-actions"></div>
+  </header>
+
+  <form id="edit-form" class="form" autocomplete="off">
+    <label class="field">
+      <span class="field-label">Beschreibung <em>*</em></span>
+      <input type="text" id="f-description" placeholder="z. B. Musterfirma GmbH – Hauptdomain" required>
+    </label>
+
+    <label class="field">
+      <span class="field-label">Dienst <em>*</em></span>
+      <select id="f-service">
+        <option value="members">MembersArea – Vertragsverwaltung</option>
+        <option value="kas">KAS – technische Verwaltung</option>
+        <option value="webmail">WebMail</option>
+        <option value="webftp">WebFTP</option>
+      </select>
+    </label>
+
+    <label class="field">
+      <span class="field-label" id="f-user-label">Benutzer <em>*</em></span>
+      <input type="text" id="f-username" spellcheck="false" autocapitalize="off" required>
+    </label>
+
+    <label class="field">
+      <span class="field-label" id="f-pass-label">Passwort <em>*</em></span>
+      <span class="pw-wrap">
+        <input type="password" id="f-password" autocomplete="new-password" required>
+        <button type="button" id="f-pass-toggle" class="btn" title="Passwort anzeigen">&#128065;</button>
+      </span>
+    </label>
+
+    <label class="field">
+      <span class="field-label">Notizen</span>
+      <textarea id="f-notes" rows="3" placeholder="Ansprechpartner, Besonderheiten, Vertragsdaten …"></textarea>
+    </label>
+
+    <div class="form-actions">
+      <button type="button" id="edit-delete" class="btn danger-outline">Löschen</button>
+      <span class="spacer"></span>
+      <button type="button" id="edit-cancel" class="btn">Abbrechen</button>
+      <button type="submit" class="btn btn-primary">Speichern</button>
+    </div>
+    <p id="edit-error" class="error" hidden></p>
+  </form>
+</section>
+
+<!-- ============ Einstellungen ============ -->
+<section id="view-settings" class="view" hidden>
+  <header class="topbar">
+    <button id="settings-back" class="icon-btn" aria-label="Zurück">&#8592;</button>
+    <div class="brand"><span class="brand-text">Einstellungen</span></div>
+    <div class="topbar-actions"></div>
+  </header>
+
+  <div class="form">
+    <div class="group">
+      <h2 class="group-title">Verhalten beim Klick</h2>
+      <label class="toggle">
+        <input type="checkbox" id="s-newtab">
+        <span>Login immer in neuem Tab öffnen</span>
+      </label>
+      <p class="hint">Aus: eine bereits geöffnete ALL&#8209;INKL Login-Seite wird wiederverwendet.</p>
+      <label class="toggle">
+        <input type="checkbox" id="s-submit">
+        <span>Formular automatisch absenden</span>
+      </label>
+      <p class="hint">Aus: Felder werden nur ausgefüllt, Absenden per Hand.</p>
+      <label class="field">
+        <span class="field-label">Sortierung</span>
+        <select id="s-sort">
+          <option value="description">Beschreibung (A–Z)</option>
+          <option value="lastUsed">Zuletzt verwendet</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="group">
+      <h2 class="group-title">Master-Passwort</h2>
+      <p class="hint" id="mp-state"></p>
+      <div id="mp-set">
+        <label class="field">
+          <span class="field-label">Neues Master-Passwort</span>
+          <input type="password" id="mp-new" autocomplete="new-password" placeholder="mind. 8 Zeichen">
+        </label>
+        <label class="field">
+          <span class="field-label">Wiederholen</span>
+          <input type="password" id="mp-new2" autocomplete="new-password">
+        </label>
+        <button type="button" id="mp-save" class="btn btn-primary btn-block">Verschlüsselung aktivieren</button>
+      </div>
+      <button type="button" id="mp-remove" class="btn btn-block" hidden>Verschlüsselung aufheben</button>
+      <p id="mp-error" class="error" hidden></p>
+      <p class="hint">Ohne Master-Passwort liegen die Passwörter unverschlüsselt im Chrome-Profil. Mit Master-Passwort werden sie per AES&#8209;GCM verschlüsselt und müssen nach jedem Chrome-Neustart einmal entsperrt werden. <strong>Das Master-Passwort kann nicht wiederhergestellt werden.</strong></p>
+    </div>
+
+    <div class="group">
+      <h2 class="group-title">Sicherung</h2>
+      <div class="row-actions">
+        <button type="button" id="btn-export" class="btn">Exportieren (JSON)</button>
+        <button type="button" id="btn-import" class="btn">Importieren</button>
+      </div>
+      <input type="file" id="import-file" accept="application/json,.json" hidden>
+      <p class="hint">Der Export enthält alle Passwörter im Klartext – sicher verwahren.</p>
+      <p id="io-msg" class="hint"></p>
+    </div>
+
+    <div class="group">
+      <h2 class="group-title">Alles löschen</h2>
+      <button type="button" id="btn-wipe" class="btn danger-outline btn-block">Alle Accounts löschen</button>
+    </div>
+  </div>
+</section>
+
+<div id="toast" class="toast" hidden></div>
+
+<script type="module" src="popup.js"></script>
+</body>
+</html>

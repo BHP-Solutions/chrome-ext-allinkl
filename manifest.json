@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "ALL-INKL Zugänge",
+  "version": "1.0.0",
+  "description": "Speichert ALL-INKL Zugangsdaten mit Beschreibung – ein Klick öffnet den Login in einem neuen Tab und meldet automatisch an.",
+  "minimum_chrome_version": "116",
+  "permissions": ["storage", "scripting", "tabs", "clipboardWrite"],
+  "host_permissions": [
+    "https://all-inkl.com/*",
+    "https://www.all-inkl.com/*",
+    "https://kas.all-inkl.com/*",
+    "https://webmail.all-inkl.com/*",
+    "https://webftp.all-inkl.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "ALL-INKL Zugänge",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": { "default": "Alt+Shift+A", "mac": "Alt+Shift+A" },
+      "description": "ALL-INKL Zugänge öffnen"
+    }
+  }
+}
