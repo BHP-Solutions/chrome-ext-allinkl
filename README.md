@@ -27,7 +27,7 @@ sauber getrennt bleiben.
 
 | Dienst | Login-Seite | Benutzerfeld |
 |---|---|---|
-| MembersArea | `all-inkl.com/members/` | Kundennummer |
+| MembersArea | `members.all-inkl.com` | Kundennummer |
 | KAS | `kas.all-inkl.com/login` | Loginname / Domain |
 | WebMail | `webmail.all-inkl.com` | E-Mail-Adresse |
 | WebFTP | `webftp.all-inkl.com` | FTP-Benutzer |

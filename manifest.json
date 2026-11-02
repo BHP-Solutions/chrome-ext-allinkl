@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ALL-INKL Zugänge",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Speichert ALL-INKL Zugangsdaten mit Beschreibung – ein Klick öffnet den Login in einem neuen Tab und meldet automatisch an.",
   "minimum_chrome_version": "116",
   "permissions": ["storage", "scripting", "tabs", "clipboardWrite"],
@@ -9,6 +9,7 @@
     "https://all-inkl.com/*",
     "https://www.all-inkl.com/*",
     "https://kas.all-inkl.com/*",
+    "https://members.all-inkl.com/*",
     "https://webmail.all-inkl.com/*",
     "https://webftp.all-inkl.com/*"
   ],

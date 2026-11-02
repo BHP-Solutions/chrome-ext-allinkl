@@ -17,7 +17,7 @@ export const SERVICES = {
     full: 'MembersArea – Vertragsverwaltung',
     userLabel: 'Kundennummer',
     passLabel: 'MA-Passwort',
-    loginUrl: 'https://all-inkl.com/members/',
+    loginUrl: 'https://members.all-inkl.com/',
     fields: { user: 'kundennummer', pass: 'passwort' },
     accent: '#7b5cf0'
   },
@@ -57,7 +57,7 @@ export function pageSupports(url, service) {
   if (isOverviewLogin(url)) return true;
   switch (service) {
     case 'kas': return /^https:\/\/kas\.all-inkl\.com\//.test(url);
-    case 'members': return /^https:\/\/(www\.)?all-inkl\.com\/members\//.test(url);
+    case 'members': return /^https:\/\/members\.all-inkl\.com\//.test(url);
     case 'webmail': return /^https:\/\/webmail\.all-inkl\.com\//.test(url);
     case 'webftp': return /^https:\/\/webftp\.all-inkl\.com\//.test(url);
     default: return false;
